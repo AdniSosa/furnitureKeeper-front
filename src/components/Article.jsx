@@ -66,6 +66,7 @@ const Article = (props) => {
             <p>Tienda: {props.furniture.store}</p>
             <p>Medidas: {props.furniture.size.width} (ancho) x {props.furniture.size.height} (alto) x {props.furniture.size.depth} (profundo)</p>
             <p>Fecha de guardado: {saveDate}</p>
+            <button>Borrar</button>
         </li>
     )
 }

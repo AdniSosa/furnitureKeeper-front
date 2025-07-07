@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    height: 100px;
+    width: 100%;
+    position: absolute;
+    top: 1%;
+    left: 0;
+    justify-content: space-around;
+
+}
+
+.navbar img {
+    position: relative;
+    left: -230%;
+}
+
+.navbar button {
+    position: relative;
+    right: -300%;
+}
+
+.list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 60px;
+    font-size: 1.5rem;
+}
+
+.list select {
+    font-family: "Quicksand", sans-serif;
+}
+
+.navbar button {
+    height: fit-content;
+    font-family: "Quicksand", sans-serif;
+}

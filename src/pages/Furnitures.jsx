@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom";
+import NavBar from "../components/NavBar";
 import Article from "../components/Article";
 
 
@@ -53,6 +54,7 @@ const Furnitures = () => {
 
             return (
             <>
+            <NavBar />
                 <h2>Muebles de {estancia}</h2>
                 <ul>
                     {furnitures.map(furniture => (

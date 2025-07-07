@@ -1,6 +1,7 @@
 import { useRoom } from "../context/RoomContext";
-import {useNavigate} from 'react-router-dom';
-import logo from '../assets/logoFurni.png'
+import { useNavigate } from 'react-router-dom';
+import logo from '../assets/logoFurni.png';
+import styles from '../styles/NavBar.module.css'
 
 const NavBar = () => {
 
@@ -16,9 +17,9 @@ const NavBar = () => {
         }
     }
     return (
-        <nav>
-            <ul>
-                <li><img src={logo}/></li>
+        <nav className={styles.navbar}>
+            <ul className={styles.list}>
+                <li><img src={logo} width={100} /></li>
                 <li>
                     <select name='rooms-select' onChange={handleSelect}>
                         <option value=''>Estancias</option>
@@ -32,9 +33,10 @@ const NavBar = () => {
                 <li>Tiendas</li>
                 <li>Todo</li>
                 <li>Favoritos</li>
+                <li><button>Agregar</button></li>
+                <li><button>Buscar</button></li>
             </ul>
-            <button>Agregar</button>
-            <button>Buscar</button>
+
         </nav>
     )
 }
