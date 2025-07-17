@@ -2,6 +2,7 @@ import { useRoom } from "../context/RoomContext";
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logoFurni.png';
 import styles from '../styles/NavBar.module.css'
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
 
@@ -31,7 +32,7 @@ const NavBar = () => {
                         <option value='Baño'>Baño</option>
                     </select></li>
                 <li>Tiendas</li>
-                <li>Todo</li>
+                <li><Link to={'/'}>Todos</Link></li>
                 <li>Favoritos</li>
                 <li><button>Agregar</button></li>
                 <li><button>Buscar</button></li>

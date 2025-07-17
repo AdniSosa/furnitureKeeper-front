@@ -11,7 +11,6 @@ const Furnitures = () => {
     const getFurnitures = async () => {
         try {
             const response = await fetch(`${import.meta.env.VITE_URL_API}/furnitures/${estancia}`);
-            console.log(`${import.meta.env.VITE_URL_API}/furnitures/${estancia}`)
 
             if (!response.ok) throw new Error('Error al traer los datos')
 
