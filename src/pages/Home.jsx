@@ -1,5 +1,4 @@
 import Article from '../components/Article';
-import NavBar from '../components/NavBar';
 import { useState, useEffect } from 'react';
 
 const Home = () => {
@@ -12,8 +11,6 @@ const Home = () => {
             if (!response.ok) throw new Error('Error al traer los datos')
 
             const data = await response.json();
-            console.log(data)
-
             setFurnitures(data)
 
         } catch (error) {
@@ -28,10 +25,8 @@ const Home = () => {
 
     return (
         <>
-            <NavBar />
-
-            {
-                furnitures &&
+            <h2>Todos mis muebles guardados</h2>
+            {furnitures &&
                 <ul>
                     {furnitures.map(furniture => (
                         <Article key={furniture._id} furniture={furniture} getFurnitures={getAllFurnitures} />

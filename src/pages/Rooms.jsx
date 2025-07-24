@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom";
-import NavBar from "../components/NavBar";
 import Article from "../components/Article";
 
 
@@ -15,7 +14,7 @@ const Furnitures = () => {
             if (!response.ok) throw new Error('Error al traer los datos')
 
             const data = await response.json();
-            console.log(data)
+            //console.log(data)
             setFurnitures(data);
         } catch (error) {
             console.error(error)
@@ -23,10 +22,7 @@ const Furnitures = () => {
     }
 
     useEffect(() => {
-        if (estancia) {
-            console.log('useEffect ejecutado con estancia:', estancia);
-            getFurnitures();
-        }
+        if (estancia) getFurnitures();
     }, [estancia])
 
 
@@ -44,24 +40,25 @@ const Furnitures = () => {
             if (!response.ok) throw new Error("La reserva no pudo ser guardada");
 
             const data = await response.json();
-            
+
             //console.log(data);
         } catch (error) {
             console.error(error);
         }
     }
 
-            return (
-            <>
-            <NavBar />
-                <h2>Muebles de {estancia}</h2>
+    return (
+        <>
+            <h2>Muebles de {estancia}</h2>
+            {furnitures &&
                 <ul>
                     {furnitures.map(furniture => (
-                        <Article key={furniture._id} furniture={furniture} getFurnitures={getFurnitures}/>
+                        <Article key={furniture._id} furniture={furniture} getFurnitures={getFurnitures} />
                     ))}
                 </ul>
-            </>
-            )
+            }
+        </>
+    )
 }
 
-            export default Furnitures;
+export default Furnitures;

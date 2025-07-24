@@ -2,12 +2,12 @@
 
 .navbar {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     gap: 30px;
     height: 100px;
     width: 100%;
     position: absolute;
-    top: 1%;
+    top: 5%;
     left: 0;
     justify-content: space-around;
 
@@ -15,7 +15,7 @@
 
 .navbar img {
     position: relative;
-    left: -230%;
+    left: -200%;
 }
 
 .navbar button {
@@ -38,4 +38,10 @@
 .navbar button {
     height: fit-content;
     font-family: "Quicksand", sans-serif;
+}
+
+.navbar input {
+    position: absolute;
+    right: 0%;
+    top: 13%;
 }
