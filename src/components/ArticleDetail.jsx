@@ -1,40 +1,70 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import UpdateButton from './UpdateButton';
 import WhiteHeart from '../assets/CorazónBlanco.png';
 import blackHeart from '../assets/CorazónNegro.png';
 
 
-
 //*Para mostrar datos de cada artículo
 
-const Article = (props) => {
-    const navigate = useNavigate()
+const ArticleDetail = () => {
+    const {_id} = useParams()
+    console.log(_id)
+    const [payload, setPayload] = useState({
+  size: { width: "", height: "", depth: "" },
+  name: "",
+  price: "",
+  image: "",
+  store: "",
+  url: "",
+  room: "",
+  comment: "",
+  favorite: false,
+  updatedAt: ""
+});
     const [furniToUpdate, setFurniToUpdate] = useState({
-        size: props.furniture.size,
-        name: props.furniture.name,
-        price: props.furniture.price,
-        image: props.furniture.image,
-        store: props.furniture.store,
-        url: props.furniture.url,
-        room: props.furniture.room,
-        comment: props.furniture.comment,
-        favorite: props.furniture.favorite
+        size: payload.size,
+        name: payload.name,
+        price: payload.price,
+        image: payload.image,
+        store: payload.store,
+        url: payload.url,
+        room: payload.room,
+        comment: payload.comment,
+        favorite: payload.favorite
     })
     const [clicked, setClicked] = useState(false);
     const [deletedMessage, setDeletedMessage] = useState('')
-    const saveDate = props.furniture.updatedAt.slice(0, 10).split('-').reverse().join('-') //Quita la hora de la fecha guardada y muestra la fecha en orden dd-mm-aaaa
+    const saveDate = payload.updatedAt.slice(0, 10).split('-').reverse().join('-') //Quita la hora de la fecha guardada y muestra la fecha en orden dd-mm-aaaa
     //console.log(saveDate)
 
     const showHeart = () => {
-        if (!props.furniture.favorite) {
+        if (!payload.favorite) {
             return WhiteHeart
         } else {
             return blackHeart
         }
     }
 
-    const editArticle = async () => {
+     const getFurniture = async () => {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_URL_API}/furniture/${_id}`);
+
+            if (!response.ok) throw new Error('No se pudo obtener la info del mueble')
+
+            const data = await response.json();
+            setPayload(data)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    useEffect(() => {
+        getFurniture();
+    }, [])
+
+
+    const editFavorite = async () => {
         try {
             const response = await fetch(`${import.meta.env.VITE_URL_API}/furniture/${props.furniture._id}`, {
                 method: 'PUT',
@@ -48,7 +78,6 @@ const Article = (props) => {
             if (!response.ok) throw new Error("El artículo no pudo ser encontrado");
 
             const data = await response.json();
-            //setFurniToUpdate({ ...furniToUpdate, favorite: true })
             setClicked(!clicked)
             props.getFurnitures();
 
@@ -59,7 +88,7 @@ const Article = (props) => {
 
     useEffect(() => {
         if (clicked || !clicked)
-            setFurniToUpdate({ ...furniToUpdate, favorite: !props.furniture.favorite })
+            setFurniToUpdate({ ...furniToUpdate, favorite: !payload.favorite })
     }, [clicked])
 
     const deleteArticle = async () => {
@@ -85,7 +114,7 @@ const Article = (props) => {
 
     useEffect(() => {
         setTimeout(() => {
-            props.getFurnitures();
+            getFurniture();
             setDeletedMessage('')
         }, 3000);
     }, [deletedMessage])
@@ -94,20 +123,19 @@ const Article = (props) => {
 
     return (
         <>
-            <li key={props.furniture._id}>
-                <img src={props.furniture.image} alt={`${props.furniture.name}´s furniture`} width={150} />
-                <img src={showHeart()} alt='heart' width={15} onClick={editArticle} />
+            <li key={payload._id}>
+                <img src={payload.image} alt={`${payload.name}´s furniture`} width={150} />
+                <img src={showHeart()} alt='heart' width={15} onClick={editFavorite} />
 
-                <h3>{props.furniture.name}</h3>
-                <p>Precio: {props.furniture.price}€</p>
-                <p>Tienda: {props.furniture.store}</p>
+                <h3>{payload.name}</h3>
+                <p>Precio: {payload.price}€</p>
+                <p>Tienda: {payload.store}</p>
                 <p>Medidas: <br />
-                    {props.furniture.size.width} cm (ancho) x {props.furniture.size.height} cm (alto) x {props.furniture.size.depth} cm (profundo)</p>
-                <p><a href={props.furniture.url} target="_blank">Enlace a web de la tienda</a></p>
+                    {payload.size.width} cm (ancho) x {payload.size.height} cm (alto) x {payload.size.depth} cm (profundo)</p>
+                <p><a href={payload.url} target="_blank">Enlace a web de la tienda</a></p>
                 <p>Fecha de guardado: {saveDate}</p>
-                <UpdateButton id={props.furniture._id} />
+                <UpdateButton id={payload._id} />
                 <button onClick={() => deleteArticle()}>Borrar</button>
-                <button onClick={() => navigate(`/info/${props.furniture._id}`)}>Más info</button>
             </li>
             {deletedMessage && (
                 <p>{deletedMessage}</p>
@@ -116,4 +144,4 @@ const Article = (props) => {
     )
 }
 
-export default Article;
+export default ArticleDetail;

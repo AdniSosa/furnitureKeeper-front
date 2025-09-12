@@ -41,13 +41,12 @@ const NavBar = () => {
         if (furnitures.length > 0) getStores()
     }, [furnitures])
 
-   
+
     const handleSelect = (e) => {
         const search = e.target.value
         if (search) {
             changeSearch(search);
             navigate(`/muebles/${search}`)
-
         }
     }
 
@@ -56,7 +55,6 @@ const NavBar = () => {
         if (search) {
             changeSearch(search);
             navigate(`/tiendas/${search}`)
-
         }
     }
 
@@ -64,16 +62,16 @@ const NavBar = () => {
         <nav className={styles.navbar}>
             <ul className={styles.list}>
                 <li><img src={logo} width={100} /></li>
-                <li><Select onChange={handleSelect} name={'rooms-select'} rooms={rooms} selectName={'Estancias'} /></li>
+                <li><Link to={'/'}>Mis muebles</Link></li>
+                <li><Select onChange={handleSelect} name='Estancias' rooms={rooms} /></li>
                 {stores &&
                     <li>
-                        <Select onChange={storeSelect} name={'store-select'} values={stores} selectName={'Tiendas'} />
+                        <Select onChange={storeSelect} name='Tiendas' values={stores} />
                     </li>
                 }
-                <li><Link to={'/'}>Todos</Link></li>
                 <li><Link to={'/favoritos'}>Favoritos</Link></li>
                 <li><Link to={'/agregar'}><button id="addBtn">Agregar</button></Link></li>
-                <li><input type="search"/><input type="button" className="searchBtn" value="Buscar"/></li>
+                <li><input type="search" /><input type="button" className="searchBtn" value="Buscar" /></li>
             </ul>
 
         </nav>

@@ -25,7 +25,7 @@ const Home = () => {
 
     return (
         <>
-            <h2>Todos mis muebles guardados</h2>
+            <h2>Mis muebles ♡</h2>
             {furnitures &&
                 <ul>
                     {furnitures.map(furniture => (

@@ -23,7 +23,7 @@ const Favorites = () => {
 
     return (
         <>
-            <h2>Mis favoritos</h2>
+            <h2>Mis favoritos ♡</h2>
             {furnituresFavorites &&
                 <ul>
                     {furnituresFavorites.map(furniture => (

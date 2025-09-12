@@ -4,9 +4,9 @@ const Select = (props) => {
     const values = props.values
     
     return (
-
-        <select name={props.name} onChange={props.onChange}>
-            <option value=''>{props.selectName}</option>
+        <>
+        <label htmlFor={props.name}>{props.name}</label>
+        <select id={props.name} name={props.name} onChange={props.onChange} width={10}>
             {rooms &&
                 rooms.map(room => (
                     <option key={room} value={room}>{room}</option>
@@ -18,6 +18,7 @@ const Select = (props) => {
                 ))
             }
         </select>
+        </>
     )
 }
 

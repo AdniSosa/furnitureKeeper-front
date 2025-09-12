@@ -26,27 +26,6 @@ const Furnitures = () => {
     }, [estancia])
 
 
-    const editArticle = async () => {
-        try {
-            const response = await fetch(`${import.meta.env.VITE_URL_API}/furnitures/${props.furniture._id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(services),
-                credentials: 'include',
-            });
-
-            if (!response.ok) throw new Error("La reserva no pudo ser guardada");
-
-            const data = await response.json();
-
-            //console.log(data);
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
     return (
         <>
             <h2>Muebles de {estancia}</h2>

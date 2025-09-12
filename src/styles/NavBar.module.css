@@ -15,33 +15,41 @@
 
 .navbar img {
     position: relative;
-    left: -200%;
+    left: -80%;
 }
 
 .navbar button {
     position: relative;
-    right: -300%;
+    right: -70%;
+    height: fit-content;
+    font-family: "Quicksand", sans-serif;
 }
 
 .list {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 60px;
+    gap: 20px;
     font-size: 1.5rem;
+    width: 80%;
 }
 
 .list select {
     font-family: "Quicksand", sans-serif;
+    width: 10%;
+    margin-left: 1%;
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
 }
 
-.navbar button {
-    height: fit-content;
-    font-family: "Quicksand", sans-serif;
+.list li {
+    width: 80%;
 }
+
 
 .navbar input {
     position: absolute;
-    right: 0%;
+    right: 5%;
     top: 13%;
 }
