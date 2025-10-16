@@ -86,7 +86,7 @@ const UpdateForm = () => {
 
     return (
         <>
-            <h2>Agrega un nuevo mueble a tu colección</h2>
+            <h2>Edita los datos del mueble</h2>
 
             <form className={style.form} onSubmit={editFurniture}>
                 <label htmlFor="image">Foto: </label><input type="text" placeholder="Introduce URL de la imagen" id='image' name='image' value={payload.image} onChange={handleChange} /> <br />

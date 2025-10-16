@@ -8,20 +8,20 @@ import blackHeart from '../assets/CorazónNegro.png';
 //*Para mostrar datos de cada artículo
 
 const ArticleDetail = () => {
-    const {_id} = useParams()
-    console.log(_id)
+    const { id } = useParams()
+    console.log(id)
     const [payload, setPayload] = useState({
-  size: { width: "", height: "", depth: "" },
-  name: "",
-  price: "",
-  image: "",
-  store: "",
-  url: "",
-  room: "",
-  comment: "",
-  favorite: false,
-  updatedAt: ""
-});
+        size: { width: "", height: "", depth: "" },
+        name: "",
+        price: "",
+        image: "",
+        store: "",
+        url: "",
+        room: "",
+        comment: "",
+        favorite: false,
+        updatedAt: ""
+    });
     const [furniToUpdate, setFurniToUpdate] = useState({
         size: payload.size,
         name: payload.name,
@@ -46,9 +46,9 @@ const ArticleDetail = () => {
         }
     }
 
-     const getFurniture = async () => {
+    const getFurniture = async () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_URL_API}/furniture/${_id}`);
+            const response = await fetch(`${import.meta.env.VITE_URL_API}/furniture/${id}`);
 
             if (!response.ok) throw new Error('No se pudo obtener la info del mueble')
 

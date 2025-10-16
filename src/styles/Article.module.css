@@ -1,0 +1,41 @@
+
+li {
+    margin-top: 2rem;
+    margin-left: 0.5rem;
+}
+
+/*DIV que contiene imagen y botones*/
+li > div {
+    background-color: rgba(129, 154, 145, 0.3);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 0.5rem;
+    border-radius: 10%;
+}
+
+/*Selecciona la imagen del mueble*/
+li> div > img {
+    height: 200px;
+    width: 200px;
+    border-radius: 5%;
+}
+
+/*DIV que contiene solo los botones*/
+li div div {
+    margin-top: .3rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+/*Selecciona el corazón*/
+li div div img {
+    margin-top: .4rem;
+}
+
+/*DIV que contiene título, tienda y precio*/
+li > div:last-child {
+    text-align: center;
+    background-color: transparent;
+}

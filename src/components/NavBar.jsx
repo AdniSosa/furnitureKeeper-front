@@ -60,19 +60,23 @@ const NavBar = () => {
 
     return (
         <nav className={styles.navbar}>
-            <ul className={styles.list}>
-                <li><img src={logo} width={100} /></li>
-                <li><Link to={'/'}>Mis muebles</Link></li>
-                <li><Select onChange={handleSelect} name='Estancias' rooms={rooms} /></li>
-                {stores &&
-                    <li>
-                        <Select onChange={storeSelect} name='Tiendas' values={stores} />
-                    </li>
-                }
-                <li><Link to={'/favoritos'}>Favoritos</Link></li>
-                <li><Link to={'/agregar'}><button id="addBtn">Agregar</button></Link></li>
-                <li><input type="search" /><input type="button" className="searchBtn" value="Buscar" /></li>
-            </ul>
+            <img src={logo} width={100} />
+            <div className={styles.div}> 
+                <ul className={styles.list}>
+                    <li><Link to={'/'}>Mis muebles</Link></li>
+                    <li><Select onChange={handleSelect} name='Estancias' rooms={rooms} /></li>
+                    {stores &&
+                        <li>
+                            <Select onChange={storeSelect} name='Tiendas' values={stores} />
+                        </li>
+                    }
+                    <li><Link to={'/favoritos'}>Favoritos</Link></li>
+                </ul>
+                <ul className={styles.buttons}>
+                    <li><Link to={'/agregar'}><button id="addBtn">Agregar</button></Link></li>
+                    <li><input type="search" /><input type="button" className="searchBtn" value="Buscar" /></li>
+                </ul>
+            </div>
 
         </nav>
     )
