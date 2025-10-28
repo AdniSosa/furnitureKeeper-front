@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 
 const Home = () => {
     const [furnitures, setFurnitures] = useState([])
+    const [furnituresFound, setfurnituresFound] = useState([]);
+    const [search, setSearch] = useState('')
 
     const getAllFurnitures = async () => {
         try {
@@ -23,13 +25,26 @@ const Home = () => {
         getAllFurnitures()
     }, [])
 
+    const inputSearch = async () => {
+        const response = await fetch(`${import.meta.env.VITE_URL_API}/furniture/${search}`)
+
+        if (!response) throw new Error('There has been an error getting all the furnitures')
+
+        const data = await response.json();
+        setfurnituresFound(data);
+    }
+
+    useEffect(() => {
+        inputSearch()
+    }, [search])
+
     return (
         <>
             <h2>Mis muebles ♡</h2>
             {furnitures &&
                 <ul>
                     {furnitures.map(furniture => (
-                        <Article key={furniture._id} furniture={furniture} getFurnitures={getAllFurnitures} />
+                        <Article key={furniture._id} furniture={furniture} getFurnitures={getAllFurnitures} searchFurniture={search}/>
                     ))}
                 </ul>
             }

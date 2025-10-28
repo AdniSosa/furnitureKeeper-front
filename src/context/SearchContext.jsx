@@ -1,4 +1,4 @@
-//Contexto para pasar room de un lado a otro
+//Contexto para pasar room y store de un lado a otro
 
 import { useContext, createContext, useState } from "react";
 
