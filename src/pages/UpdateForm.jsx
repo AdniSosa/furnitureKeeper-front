@@ -27,6 +27,7 @@ const UpdateForm = () => {
             if (!response.ok) throw new Error('No se pudo obtener la info del mueble')
 
             const data = await response.json();
+            console.log(data)
             setPayload(data)
         } catch (error) {
             console.error(error)
@@ -86,13 +87,14 @@ const UpdateForm = () => {
 
     return (
         <>
-            <h2>Edita los datos del mueble</h2>
+            <h2>Edita los datos del mueble: <span>{payload.name}</span></h2>
 
             <form className={style.form} onSubmit={editFurniture}>
+                <img src={payload.image} alt={payload.image} width={300} />
                 <label htmlFor="image">Foto: </label><input type="text" placeholder="Introduce URL de la imagen" id='image' name='image' value={payload.image} onChange={handleChange} /> <br />
                 <label htmlFor='name'>Nombre artículo: </label><input type="text" id='name' name='name' value={payload.name} onChange={handleChange} required /> <br />
                 <label htmlFor='room'>Estancia: </label>
-                <select id='room' name="room"value={payload.room} onChange={handleChange} required>
+                <select id='room' name="room" value={payload.room} onChange={handleChange} required>
 
                     <option name='Dormitorio' value='Dormitorio'>Dormitorio</option>
                     <option name='Cocina' value='Cocina'>Cocina</option>
@@ -110,8 +112,12 @@ const UpdateForm = () => {
                 <label>Ancho: </label><input type="text" name='width' value={payload.size.width} onChange={handleChange} /><br />
                 <label>Alto: </label><input type="text" name='height' value={payload.size.height} onChange={handleChange} /><br />
                 <label>Profundo: </label><input type="text" name='depth' value={payload.size.depth} onChange={handleChange} /><br />
-                <label>Comentario: </label><input type="text" name='comment' value={payload.comment} onChange={handleChange} /><br />
-                <input type="checkbox" name='favorite' checked={payload.favorite} onChange={handleChange} /><label>Guardar como favorito</label><br />
+                <label>Comentario: </label><textarea type="text" name='comment' value={payload.comment} onChange={handleChange} /><br />
+                <div className="checkbox-div">
+                    <input type="checkbox" name='favorite' checked={payload.favorite} onChange={handleChange} />
+                    <label htmlFor="favorite">Guardar como favorito</label>
+                </div>
+                <br />
 
                 <button type="submit">Editar artículo</button>
             </form>

@@ -1,9 +1,10 @@
 import Article from '../components/Article';
 import { useState, useEffect } from 'react';
+import { useSearch } from '../context/SearchContext';
 
 const Home = () => {
     const [furnitures, setFurnitures] = useState([])
-    const [furnituresFound, setfurnituresFound] = useState([]);
+    const { furnituresFound } = useSearch()
     const [search, setSearch] = useState('')
 
     const getAllFurnitures = async () => {
@@ -25,18 +26,6 @@ const Home = () => {
         getAllFurnitures()
     }, [])
 
-    const inputSearch = async () => {
-        const response = await fetch(`${import.meta.env.VITE_URL_API}/furniture/${search}`)
-
-        if (!response) throw new Error('There has been an error getting all the furnitures')
-
-        const data = await response.json();
-        setfurnituresFound(data);
-    }
-
-    useEffect(() => {
-        inputSearch()
-    }, [search])
 
     return (
         <>
@@ -44,7 +33,7 @@ const Home = () => {
             {furnitures &&
                 <ul>
                     {furnitures.map(furniture => (
-                        <Article key={furniture._id} furniture={furniture} getFurnitures={getAllFurnitures} searchFurniture={search}/>
+                        <Article key={furniture._id} furniture={furniture} getFurnitures={getAllFurnitures} furnituresFound={furnituresFound} />
                     ))}
                 </ul>
             }

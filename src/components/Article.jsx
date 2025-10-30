@@ -5,7 +5,6 @@ import WhiteHeart from '../assets/CorazónBlanco.png';
 import blackHeart from '../assets/CorazónNegro.png';
 import styles from '../styles/Article.module.css'
 
-
 //*Para mostrar datos de cada artículo
 
 const Article = (props) => {
@@ -85,11 +84,12 @@ const Article = (props) => {
 
     useEffect(() => {
         setTimeout(() => {
-            props.getFurnitures();
+            props.getFurnitures;
             setDeletedMessage('')
         }, 3000);
     }, [deletedMessage])
 
+    //if (props.furnitureFound.length === 0) return <p>No hay resultados.</p>;
 
 
     return (
@@ -114,7 +114,7 @@ const Article = (props) => {
                         </div>
                     </div>
                 </div>
-
+                
                 <div>
                     <h3>{props.furniture.name}</h3>
                     <p>{props.furniture.store}</p>

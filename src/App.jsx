@@ -6,6 +6,7 @@ import Favorites from "./pages/Favorites";
 import AddForm from "./pages/AddForm";
 import NavBar from "./components/NavBar";
 import FurnitureDetails from "./pages/FurnitureDetails";
+import Search from "./pages/Search";
 import { SearchProvider } from "./context/SearchContext";
 import './App.css'
 import UpdateForm from "./pages/UpdateForm";
@@ -23,6 +24,7 @@ function App() {
                 <Route path="/agregar" element={<AddForm/>}></Route>
                 <Route path="/editar/:id" element={<UpdateForm />}></Route>
                 <Route path="/info/:id" element={<FurnitureDetails />}></Route>
+                <Route path="/search" element={<Search />}></Route>
             </Routes>
         </Router>
     </SearchProvider>

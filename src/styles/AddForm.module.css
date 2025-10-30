@@ -1,10 +1,23 @@
+span {
+    color: #333;
+    text-decoration: underline;
+}
+
 .form {
-    text-align: left;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 2rem;
 }
 
 .form label {
     color: black;
+
+}
+
+.form>img {
+    margin-bottom: 2rem;
 
 }
 
@@ -15,12 +28,22 @@
 }
 
 .form input[type="checkbox"] {
-    width: 2%;
+    width: 15%;
     position: relative;
     top: 20%;
 }
 
+.form .checkbox-div {
+    width: 3000px
+}
+
+.form textarea {
+    width: 30%;
+    min-height: 50px;
+}
+
+
 .form button {
     position: absolute;
-    top: 70%;
+    bottom: 0;
 }
