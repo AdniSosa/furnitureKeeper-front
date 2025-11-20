@@ -1,6 +1,8 @@
-import Article from '../components/Article';
+import Article from '../components/Article.jsx';
 import { useState, useEffect } from 'react';
-import { useSearch } from '../context/SearchContext';
+import { useSearch } from '../context/SearchContext.jsx';
+import Pagination from '../components/Pagination.jsx';
+import styles from '../styles/Home.module.css'
 
 const Home = () => {
     const [furnitures, setFurnitures] = useState([])
@@ -31,12 +33,13 @@ const Home = () => {
         <>
             <h2>Mis muebles ♡</h2>
             {furnitures &&
-                <ul>
+                <ul className={styles.articles}>
                     {furnitures.map(furniture => (
                         <Article key={furniture._id} furniture={furniture} getFurnitures={getAllFurnitures} furnituresFound={furnituresFound} />
                     ))}
                 </ul>
             }
+            <Pagination totalPages={5}/>
         </>
     )
 }

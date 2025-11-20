@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Navigate, useNavigate } from "react-router-dom";
 import style from '../styles/AddForm.module.css';
 
 const UpdateForm = () => {
     const { id } = useParams()
+    const navigate = useNavigate()
     const [payload, setPayload] = useState({
         name: "",
         price: "",
@@ -77,7 +78,7 @@ const UpdateForm = () => {
             return;
         }
         if (name === 'favorite') {
-            setPayload({ ...payload, [name]: checked })
+            setPayload({ ...payload, favorite: !payload.favorite })
             return
         }
         setPayload({ ...payload, [name]: value })
@@ -119,7 +120,7 @@ const UpdateForm = () => {
                 </div>
                 <br />
 
-                <button type="submit">Editar artículo</button>
+                <button type="submit"onClick={() => navigate(`/info/${id}`)}>Editar artículo</button>
             </form>
         </>
     )

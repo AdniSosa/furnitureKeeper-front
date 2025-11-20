@@ -1,5 +1,4 @@
 import Article from '../components/Article';
-import { useState, useEffect } from 'react';
 import { useSearch } from '../context/SearchContext';
 
 const Search = () => {

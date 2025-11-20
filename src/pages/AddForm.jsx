@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import style from '../styles/AddForm.module.css';
+import { useNavigate } from "react-router-dom";
 
 const AddForm = () => {
     const [message, setMessage] = useState('');
+    const navigate = useNavigate();
     const [newFurniture, setNewFurniture] = useState({
         name: "",
         price: "",
@@ -38,7 +40,7 @@ const AddForm = () => {
                 })
             if (!response.ok) throw new Error('No se pudo guardar el mueble')
             const data = response.json();
-            setMessage('El artículo ha sido guardado')
+            navigate('/')
         } catch (error) {
             console.error(error)
         }
@@ -72,10 +74,6 @@ const AddForm = () => {
         <>
             <h2>Agrega un nuevo mueble a tu colección</h2>
 
-            {message ?
-
-                <h3>{message}</h3> :
-
                 <form className={style.form} >
                     <label htmlFor="image">Foto: </label><input type="text" placeholder="Introduce URL de la imagen" id='image' name='image' value={newFurniture.image} onChange={handleChange} /> <br />
                     <label htmlFor='name'>Nombre artículo: </label><input type="text" id='name' name='name' value={newFurniture.name} onChange={handleChange} required /> <br />
@@ -104,7 +102,7 @@ const AddForm = () => {
                 </form>
 
 
-            }
+        
         </>
     )
 }

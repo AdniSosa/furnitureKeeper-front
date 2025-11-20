@@ -9,6 +9,7 @@ span {
     align-items: center;
     position: relative;
     top: 2rem;
+    height: fit-content;
 }
 
 .form label {
@@ -45,5 +46,17 @@ span {
 
 .form button {
     position: absolute;
-    bottom: 0;
+    bottom: -2rem;
+    margin-top: 1rem;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 500;
+    background-color: rgb(167, 193, 168);
+    border: none;
+    border-radius: 5%;
+    padding: .5rem;
+}
+
+.form button:hover {
+    background-color: rgb(51, 51, 51);
+    color: white;
 }

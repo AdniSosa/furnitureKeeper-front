@@ -1,0 +1,88 @@
+.li {
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 10rem;
+    height: fit-content;
+    position: relative;
+    left: 15rem;
+    width: 1000px;
+}
+
+.li h3 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.li>img {
+    width: 400px;
+    border-radius: 10%;
+    position: relative;
+    top: 2.5rem;
+    left: 7rem
+}
+
+.description {
+    align-items: start;
+    margin: 1rem 0 0 10rem;
+    position: relative;
+    top: -1rem;
+}
+
+.description>p {
+    margin-top: 1rem;
+}
+
+/*Div de botones*/
+.buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    position: relative;
+    left: 10rem;
+    top: 3rem;
+}
+
+/*Botones*/
+.buttons button {
+    font-family: "Quicksand", sans-serif;
+    border: none;
+    border-radius: 5%;
+}
+
+/*Botón de editar*/
+.buttons button:nth-of-type(1) {
+    position: absolute;
+    bottom: 3rem;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: rgb(51, 51, 51);
+    background-color: rgb(167, 193, 168);
+    padding: .5rem 2rem;
+}
+
+/*Botón de borrar*/
+.buttons button:nth-of-type(2) {
+    position: relative;
+    left: 0.1rem;
+    margin-top: 1rem;
+    font-weight: 700;
+    color: rgb(167, 193, 168);
+    background-color: rgb(51, 51, 51);
+    padding: .5rem;
+}
+
+/*Botón de editar*/
+.buttons button:nth-of-type(1):hover {
+    background-color: rgb(51, 51, 51);
+    color: rgb(167, 193, 168);
+    font-weight: 700;
+}
+
+/*Botón de borrar*/
+.buttons button:nth-of-type(2):hover {
+    background-color: rgb(167, 193, 168);
+    color: rgb(51, 51, 51);
+    font-weight: 700;
+}

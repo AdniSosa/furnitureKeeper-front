@@ -62,27 +62,18 @@ const NavBar = () => {
 
     return (
         <nav className={styles.navbar}>
-            <img src={logo} width={100} />
+            <img src={logo} width={100} onClick={() => navigate('/')}/>
             <div className={styles.div}>
-                <div>
-                    <ul className={styles.list}>
-                        <li><Link to={'/'}>Mis muebles</Link></li>
-                        <li><Select onChange={handleSelect} name='Estancias' rooms={rooms} /></li>
-                        {stores &&
-                            <li>
-                                <Select onChange={storeSelect} name='Tiendas' values={stores} />
-                            </li>
-                        }
-                        <li><Link to={'/favoritos'}>Favoritos</Link></li>
-                    </ul>
-                </div>
-                
-                    <ul className={styles.buttons}>
-                        <li><InputSearch /></li>
-                        <li><Link to={'/agregar'}><button id="addBtn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="icon icon-tabler icons-tabler-filled icon-tabler-circle-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4.929 4.929a10 10 0 1 1 14.141 14.141a10 10 0 0 1 -14.14 -14.14zm8.071 4.071a1 1 0 1 0 -2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 1 0 2 0v-2h2a1 1 0 1 0 0 -2h-2v-2z" /></svg></button></Link></li>
-                    </ul>
-               
-
+                <section className={styles.list}>
+                    <Link to={'/'}>Mis muebles</Link>
+                    <Select onChange={handleSelect} name='Estancias' rooms={rooms} />
+                    <Select onChange={storeSelect} name='Tiendas' values={stores} />
+                    <Link to={'/favoritos'}>Favoritos</Link>
+                </section>
+                <section className={styles.buttons}>
+                    <InputSearch className={styles.input}/>
+                    <Link to={'/agregar'}><button id="addBtn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="icon icon-tabler icons-tabler-filled icon-tabler-circle-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4.929 4.929a10 10 0 1 1 14.141 14.141a10 10 0 0 1 -14.14 -14.14zm8.071 4.071a1 1 0 1 0 -2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 1 0 2 0v-2h2a1 1 0 1 0 0 -2h-2v-2z" /></svg></button></Link>
+                </section>
             </div>
 
         </nav>

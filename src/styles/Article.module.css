@@ -1,25 +1,26 @@
-
 li {
     margin-top: 2rem;
-    margin-left: 0.5rem;
+    flex: 0 0 250px;
+    
 }
 
 /*DIV que contiene imagen y botones*/
-li > div {
+li>div {
     background-color: rgba(129, 154, 145, 0.3);
     padding-top: 1rem;
     padding-bottom: 1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
     margin: 0.5rem;
     border-radius: 10%;
+    width: 100%;
 }
 
 /*Selecciona la imagen del mueble*/
-li> div > img {
+li>div>img {
     height: 200px;
     width: 200px;
     border-radius: 5%;
+    position: relative;
+    left: 1.5rem;
 }
 
 /*DIV que contiene solo los botones*/
@@ -35,7 +36,7 @@ li div div img {
 }
 
 /*DIV que contiene título, tienda y precio*/
-li > div:last-child {
+li>div:last-child {
     text-align: center;
     background-color: transparent;
 }
