@@ -24,15 +24,16 @@ li>div>img {
 }
 
 /*DIV que contiene solo los botones*/
-li div div {
-    margin-top: .3rem;
+.buttons {
+    margin-top: 1rem;
     display: flex;
     justify-content: space-around;
 }
 
 /*Selecciona el corazón*/
-li div div img {
-    margin-top: .4rem;
+.heart {
+    margin-top: -.1rem;
+    margin-left: .1rem;
 }
 
 /*DIV que contiene título, tienda y precio*/

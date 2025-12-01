@@ -14,7 +14,7 @@ const Furnitures = () => {
             if (!response.ok) throw new Error('Error al traer los datos')
 
             const data = await response.json();
-            //console.log(data)
+            console.log(data)
             setFurnitures(data);
         } catch (error) {
             console.error(error)
@@ -29,12 +29,16 @@ const Furnitures = () => {
     return (
         <>
             <h2>Muebles de {estancia}</h2>
-            {furnitures &&
+            {furnitures.length === 0 ?
+                <h2>No hay resultados en {estancia}</h2>
+                :
                 <ul>
                     {furnitures.map(furniture => (
                         <Article key={furniture._id} furniture={furniture} getFurnitures={getFurnitures} />
                     ))}
                 </ul>
+
+
             }
         </>
     )

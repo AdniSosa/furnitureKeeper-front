@@ -1,5 +1,5 @@
-import { useState, useEffect, Fragment } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState, useEffect} from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import UpdateButton from '../components/UpdateButton';
 import WhiteHeart from '../assets/CorazónBlanco.png';
 import blackHeart from '../assets/CorazónNegro.png';
@@ -9,6 +9,7 @@ import styles from '../styles/FurnitureDetails.module.css'
 
 const FurnitureDetails = () => {
     const { id } = useParams()
+    const navigate = useNavigate();
     console.log(id)
     const [payload, setPayload] = useState({
         size: { width: "", height: "", depth: "" },
@@ -110,20 +111,12 @@ const FurnitureDetails = () => {
 
                 const data = await response.json();
                 setDeletedMessage(`El artículo ${payload.name} ha sido borrado`);
-
+                navigate('/')
             } catch (error) {
                 console.error(error);
             }
         }
     }
-
-    useEffect(() => {
-        setTimeout(() => {
-            getFurniture();
-            setDeletedMessage('')
-        }, 3000);
-    }, [deletedMessage])
-
 
 
     return (
@@ -137,6 +130,7 @@ const FurnitureDetails = () => {
                     <p><strong>Precio:</strong> {payload.price}€</p>
                     <p><strong>Tienda: </strong>{payload.store}</p>
                     <p><strong>Medidas: </strong>{payload.size.width} cm (ancho) x {payload.size.height} cm (alto) x {payload.size.depth} cm (profundo)</p>
+                    <p><strong>Comentario: </strong>{payload.comment}</p>
                     <p><strong>Fecha de guardado: </strong>{saveDate}</p>
                     <p><a href={payload.url} target="_blank">Enlace a web de la tienda</a></p>
                 </div>
@@ -145,9 +139,6 @@ const FurnitureDetails = () => {
                     <button onClick={() => deleteArticle()}>Borrar</button>
                 </div>
             </div>
-            {deletedMessage && (
-                <p>{deletedMessage}</p>
-            )}
         </div>
     )
 }

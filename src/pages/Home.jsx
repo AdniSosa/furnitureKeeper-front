@@ -4,10 +4,17 @@ import { useSearch } from '../context/SearchContext.jsx';
 import Pagination from '../components/Pagination.jsx';
 import styles from '../styles/Home.module.css'
 
+const resultsPerPages = 5;
+
 const Home = () => {
     const [furnitures, setFurnitures] = useState([])
     const { furnituresFound } = useSearch()
-    const [search, setSearch] = useState('')
+    const [search, setSearch] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const totalPages = Math.ceil(furnitures.length / resultsPerPages);
+
+    const pagedResults = furnitures.slice((currentPage -1) * resultsPerPages, currentPage * resultsPerPages)
+    console.log(pagedResults)
 
     const getAllFurnitures = async () => {
         try {
@@ -28,18 +35,23 @@ const Home = () => {
         getAllFurnitures()
     }, [])
 
+    const handlePageChange = (page) => {
+        console.log('cambiando la página: ', page)
+        setCurrentPage(page)
+    }
+
 
     return (
         <>
             <h2>Mis muebles ♡</h2>
             {furnitures &&
                 <ul className={styles.articles}>
-                    {furnitures.map(furniture => (
+                    {pagedResults.map(furniture => (
                         <Article key={furniture._id} furniture={furniture} getFurnitures={getAllFurnitures} furnituresFound={furnituresFound} />
                     ))}
                 </ul>
             }
-            <Pagination totalPages={5}/>
+            <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange}/>
         </>
     )
 }

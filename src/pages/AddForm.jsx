@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import style from '../styles/AddForm.module.css';
 import { useNavigate } from "react-router-dom";
+import style from '../styles/AddForm.module.css';
 
 const AddForm = () => {
     const [message, setMessage] = useState('');
@@ -40,7 +40,13 @@ const AddForm = () => {
                 })
             if (!response.ok) throw new Error('No se pudo guardar el mueble')
             const data = response.json();
-            navigate('/')
+            
+            setMessage('El artículo ha sido guardado')
+            
+            setTimeout(() => {
+                navigate(`/`);
+            }, 2000);
+
         } catch (error) {
             console.error(error)
         }
@@ -74,35 +80,37 @@ const AddForm = () => {
         <>
             <h2>Agrega un nuevo mueble a tu colección</h2>
 
-                <form className={style.form} >
-                    <label htmlFor="image">Foto: </label><input type="text" placeholder="Introduce URL de la imagen" id='image' name='image' value={newFurniture.image} onChange={handleChange} /> <br />
-                    <label htmlFor='name'>Nombre artículo: </label><input type="text" id='name' name='name' value={newFurniture.name} onChange={handleChange} required /> <br />
-                    <label htmlFor='room'>Estancia: </label>
-                    <select id='room' name="room" value={newFurniture.room} onChange={handleChange} required>
-                        <option name='Dormitorio' value='Dormitorio'>Dormitorio</option>
-                        <option name='Cocina' value='Cocina'>Cocina</option>
-                        <option name='Recibidor' value='Recibidor'>Recibidor</option>
-                        <option name='Baño' value='Baño'>Baño</option>
-                        <option name='Salón' value='Salón'>Salón</option>
-                        <option name='Comedor' value='Comedor'>Comedor</option>
-                        <option name='Otro' value='Otro'>Otro</option>
+            {message && <h3>{message}</h3>}
 
-                    </select><br />
-                    <label>Tienda: </label><input type="text" name='store' value={newFurniture.store} onChange={handleChange} required /><br />
-                    <label>Enlace a tienda: </label><input type="text" name='url' value={newFurniture.url} onChange={handleChange} /><br />
-                    <label>Precio: </label><input type="text" name='price' value={newFurniture.price} onChange={handleChange} required /><br />
-                    <label>Medidas (en cm): </label><br />
-                    <label>Ancho: </label><input type="text" name='width' value={newFurniture.size.width} onChange={handleChange} /><br />
-                    <label>Alto: </label><input type="text" name='height' value={newFurniture.size.height} onChange={handleChange} /><br />
-                    <label>Profundo: </label><input type="text" name='depth' value={newFurniture.size.depth} onChange={handleChange} /><br />
-                    <label>Comentario: </label><input type="text" name='comment' value={newFurniture.comment} onChange={handleChange} /><br />
-                    <input type="checkbox" name='favorite' value={newFurniture.favorite} onChange={handleChange} /><label>Guardar como favorito</label><br />
+            <form className={style.form} >
+                <label htmlFor="image">Foto: </label><input type="text" placeholder="Introduce URL de la imagen" id='image' name='image' value={newFurniture.image} onChange={handleChange} /> <br />
+                <label htmlFor='name'>Nombre artículo: </label><input type="text" id='name' name='name' value={newFurniture.name} onChange={handleChange} required /> <br />
+                <label htmlFor='room'>Estancia: </label>
+                <select id='room' name="room" value={newFurniture.room} onChange={handleChange} required>
+                    <option name='Dormitorio' value='Dormitorio'>Dormitorio</option>
+                    <option name='Cocina' value='Cocina'>Cocina</option>
+                    <option name='Recibidor' value='Recibidor'>Recibidor</option>
+                    <option name='Baño' value='Baño'>Baño</option>
+                    <option name='Salón' value='Salón'>Salón</option>
+                    <option name='Comedor' value='Comedor'>Comedor</option>
+                    <option name='Otro' value='Otro'>Otro</option>
 
-                    <button onClick={saveFurniture}>Agregar artículo</button>
-                </form>
+                </select><br />
+                <label>Tienda: </label><input type="text" name='store' value={newFurniture.store} onChange={handleChange} required /><br />
+                <label>Enlace a tienda: </label><input type="text" name='url' value={newFurniture.url} onChange={handleChange} /><br />
+                <label>Precio: </label><input type="text" name='price' value={newFurniture.price} onChange={handleChange} required /><br />
+                <label>Medidas (en cm): </label><br />
+                <label>Ancho: </label><input type="text" name='width' value={newFurniture.size.width} onChange={handleChange} /><br />
+                <label>Alto: </label><input type="text" name='height' value={newFurniture.size.height} onChange={handleChange} /><br />
+                <label>Profundo: </label><input type="text" name='depth' value={newFurniture.size.depth} onChange={handleChange} /><br />
+                <label>Comentario: </label><input type="text" name='comment' value={newFurniture.comment} onChange={handleChange} /><br />
+                <input type="checkbox" name='favorite' value={newFurniture.favorite} onChange={handleChange} /><label>Guardar como favorito</label><br />
+
+                <button onClick={saveFurniture}>Agregar artículo</button>
+            </form>
 
 
-        
+
         </>
     )
 }

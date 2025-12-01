@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Navigate, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import style from '../styles/AddForm.module.css';
 
 const UpdateForm = () => {
@@ -39,7 +39,8 @@ const UpdateForm = () => {
         getFurniture();
     }, [])
 
-    const editFurniture = async () => {
+    const editFurniture = async (e) => {
+        e.preventDefault()
 
         if (isNaN(payload.price) || payload.price === "") {
             alert("El precio debe ser un número válido");
@@ -55,8 +56,13 @@ const UpdateForm = () => {
                     },
                     body: JSON.stringify(payload),
                 })
+
             if (!response.ok) throw new Error('No se pudo guardar el mueble')
-            const data = response.json();
+
+            const data = await response.json();
+
+            navigate(`/info/${id}`);
+
         } catch (error) {
             console.error(error)
         }
@@ -108,20 +114,25 @@ const UpdateForm = () => {
                 </select><br />
                 <label>Tienda: </label><input type="text" name='store' value={payload.store} onChange={handleChange} required /><br />
                 <label>Enlace a tienda: </label><input type="text" name='url' value={payload.url} onChange={handleChange} /><br />
-                <label>Precio: </label><input type="text" name='price' value={payload.price} onChange={handleChange} required /><br />
+                <label>Precio: </label><input className={style.size} type="text" name='price' value={payload.price} onChange={handleChange} required /><br />
                 <label>Medidas (en cm): </label><br />
-                <label>Ancho: </label><input type="text" name='width' value={payload.size.width} onChange={handleChange} /><br />
-                <label>Alto: </label><input type="text" name='height' value={payload.size.height} onChange={handleChange} /><br />
-                <label>Profundo: </label><input type="text" name='depth' value={payload.size.depth} onChange={handleChange} /><br />
+                <label>Ancho: </label><input className={style.size} type="text" name='width' value={payload.size.width} onChange={handleChange} /><br />
+                <label>Alto: </label><input className={style.size} type="text" name='height' value={payload.size.height} onChange={handleChange} /><br />
+                <label>Profundo: </label><input className={style.size} type="text" name='depth' value={payload.size.depth} onChange={handleChange} /><br />
                 <label>Comentario: </label><textarea type="text" name='comment' value={payload.comment} onChange={handleChange} /><br />
-                <div className="checkbox-div">
+                <div className={style.checkboxDiv}>
                     <input type="checkbox" name='favorite' checked={payload.favorite} onChange={handleChange} />
                     <label htmlFor="favorite">Guardar como favorito</label>
                 </div>
                 <br />
 
-                <button type="submit"onClick={() => navigate(`/info/${id}`)}>Editar artículo</button>
+                <div className={style.editCancelButtons}>
+                    <button type="submit">Editar artículo</button>
+                    <button className={style.cancelButton} onClick={() => navigate(`/info/${id}`)}>Cancelar</button>
+                </div>
+
             </form>
+
         </>
     )
 }
